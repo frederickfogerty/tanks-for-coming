@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class TankController : MonoBehaviour
+public class TankController : NetworkBehaviour
 {
-
 	public GameObject BulletPrefab;
 
 	private List<GameObject> _bullets = new List<GameObject>();
@@ -18,12 +18,18 @@ public class TankController : MonoBehaviour
 	public int MaxBullets = 5;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start()
+	{
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
+		if (!isLocalPlayer)
+		{
+			return;
+		}
+
 		var z = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
 		var forward = Input.GetAxis("Vertical") * Time.deltaTime * TankSpeed;
 		transform.Rotate(0, 0, -z);
@@ -31,12 +37,14 @@ public class TankController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump"))
 		{
-			Fire();
+			CmdFire();
 		}
-
 	}
 
-	private void Fire()
+	// This [Command] code is called on the Client …
+	// … but it is run on the Server!
+	[Command]
+	private void CmdFire()
 	{
 		_bullets = _bullets.Where(y => y != null) //Check for nulls
 			.ToList();
@@ -51,7 +59,15 @@ public class TankController : MonoBehaviour
 		_bullets.Add(bullet);
 		bullet.GetComponent<Rigidbody2D>().velocity =
 			bullet.transform.up * ProjectileVelocity;
+
+		NetworkServer.Spawn(bullet);
+
 		Destroy(bullet, ProjectileLifetime);
 //		bullet.
+	}
+
+	public override void OnStartLocalPlayer()
+	{
+//		GetComponent().material.color = Color.blue;
 	}
 }

@@ -21,6 +21,11 @@ GameObject:
   - component: {fileID: 4354811864627522}
   - component: {fileID: 212035255848209036}
   - component: {fileID: 114874455562877536}
+  - component: {fileID: 50776959937941014}
+  - component: {fileID: 114423758845503810}
+  - component: {fileID: 114876608824740806}
+  - component: {fileID: 61533242654010116}
+  - component: {fileID: 114938843123862932}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -70,6 +75,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50776959937941014
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344744489844428}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &61533242654010116
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344744489844428}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0016163737, y: 0.025862157}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.38461104, y: 0.5882757}
+  m_EdgeRadius: 0
+--- !u!114 &114423758845503810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344744489844428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 234
+    i1: 237
+    i2: 175
+    i3: 193
+    i4: 97
+    i5: 135
+    i6: 36
+    i7: 140
+    i8: 184
+    i9: 123
+    i10: 10
+    i11: 99
+    i12: 13
+    i13: 79
+    i14: 28
+    i15: 39
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114874455562877536
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -83,11 +165,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 1335711072780084, guid: 2ea984795060d48638318a71c3e8fcfd,
     type: 2}
-  ProjectileVelocity: 3
+  ProjectileVelocity: 1
   ProjectileLifetime: 5
   BulletSpawn: {fileID: 4272582185497384}
   TankSpeed: 2
   MaxBullets: 5
+--- !u!114 &114876608824740806
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344744489844428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114938843123862932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1344744489844428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69774f35231548fdadaa7b13fa979c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212035255848209036
 SpriteRenderer:
   m_ObjectHideFlags: 1
