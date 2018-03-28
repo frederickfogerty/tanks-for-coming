@@ -5,8 +5,8 @@
 - [ ] Game Mechanics
   - [ ] Hard Code Map
   - [ ] Map Generator
-  - [ ] Tanks
-  - [ ] Bullets
+  - [x] Tanks
+  - [x] Bullets
   - [ ] Collisions
   - [ ] Deaths
   - [ ] Power Ups
