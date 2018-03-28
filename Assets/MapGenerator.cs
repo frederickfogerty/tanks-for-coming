@@ -1,4 +1,7 @@
-﻿namespace TanksPlayground
+﻿using System;
+using System.Threading;
+
+namespace TanksPlayground
 {
     public class MapGenerator //:MonoBehaviour
     {
@@ -7,12 +10,15 @@
         private int height; //generate num
 
         public Cell[,] Map;
- 
+
         // Use this for initialization
         void Start ()
         {
+            width = 10;
+            height = 10;
             GenerateWalls();
             GenerateAreaIDs();
+            printMap();
         }
 	
         // Update is called once per frame
@@ -24,7 +30,7 @@
         {
             Map = new Cell[width,height];
 
-            for (int i = 0; i < Map.GetLength(0); i++)
+            for (int i = 0; i < width; i++)
             {
                 for (int j = 0; j < Map.GetLength(1); j++)
                 {
@@ -44,7 +50,7 @@
                     {
                         Map[i, j].LEFT_WALL = Map[i - 1, j].RIGHT_WALL;
                     }
-                    if (i == Map.GetLength(0))
+                    if (i == Map.GetLength(0) - 1)
                     {
                         Map[i, j].RIGHT_WALL = true;
                     }
@@ -58,9 +64,9 @@
                     }
                     else
                     {
-                        Map[i, j].TOP_WALL = Map[i - 1, j].BOTTOM_WALL;
+                        Map[i, j].TOP_WALL = Map[i, j - 1].BOTTOM_WALL;
                     }
-                    if (j == Map.GetLength(1))
+                    if (j == Map.GetLength(1) - 1)
                     {
                         Map[i, j].BOTTOM_WALL = true;
                     }
@@ -126,6 +132,41 @@
                 exploreArea(indexI, indexJ + 1, areaId, count);
             }
             return count;
+        }
+
+        private void printMap()
+        {
+            for (int i = 0; i < Map.GetLength(1); i++)
+            {
+                for (int j = 0; j < Map.GetLength(0); j++)
+                {
+                    if (Map[j, i].TOP_WALL)
+                    {
+                        Console.Write(" #");
+                    }
+                }
+                
+                Console.Write("\n");
+                
+                for (int j = 0; j < Map.GetLength(0); j++)
+                {
+                    if (Map[j, i].LEFT_WALL)
+                    {
+                        Console.Write("# ");
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+                }
+                    
+                Console.Write("#\n");
+            }
+            for (int j = 0; j < Map.GetLength(0); j++)
+            {
+
+                Console.Write(" #");
+            }
         }
 
         // TODO
